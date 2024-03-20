@@ -16,4 +16,4 @@ The client calls the registerUser function in the browser. It creates a websocke
 
 The same applies when logging in.
 ## How to use
-This package provides functions that should be executed onopen and onmessage of a websocket connection. Routing, upgrading the connections etc is NOT part of this library. An example can be found in `dev_server.ts` which is can be run using `deno task dev` on port 5180. It is compatible with the exampe of [@socketauthn/client](https://github.com/oxydemeton/socketauthn-client)
+This package provides functions that should be executed onopen and onmessage of a websocket connection. Routing, upgrading the connections etc is NOT part of this library. An example can be found in `dev_server.ts` which is can be run using `deno task dev` on port 5180. It is compatible with the example of [@socketauthn/client](https://github.com/oxydemeton/socketauthn-client)
