@@ -1,0 +1,13 @@
+{
+    "name": "@socketauthn/deno-server",
+    "description": "A Deno serve implementation of @simplewebauthn server to use websockets",
+    "type": "module",
+    "tasks": {
+        "dev": "deno run --watch --allow-net=0.0.0.0:5180 --unstable-kv --allow-read --allow-write=./dev.sqlite dev.ts"
+    },
+    "imports": {
+        "@simplewebauthn/server": "npm:@simplewebauthn/server@^9.0.3"
+    },
+    "version": "0.0.1",
+    "exports": "./mod.ts"
+}
