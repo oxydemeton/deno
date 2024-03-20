@@ -51,4 +51,4 @@ async function onMessage(
     throw new Error("Verification failed");
   }
 }
-export { onMessage, onOpen };
+export { type GenerateRegistrationOptionsOpts, onMessage, onOpen };

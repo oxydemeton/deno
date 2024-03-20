@@ -78,7 +78,7 @@ async function onMessage(
 
 export {
   type Authenticator,
-  GenerateRegistrationOptionsOpts,
+  type GenerateRegistrationOptionsOpts,
   onMessage,
   onOpen,
 };
