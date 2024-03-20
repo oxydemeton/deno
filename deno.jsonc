@@ -1,13 +1,16 @@
 {
-    "name": "@socketauthn/deno-server",
-    "description": "A Deno serve implementation of @simplewebauthn server to use websockets",
-    "type": "module",
-    "tasks": {
-        "dev": "deno run --watch --allow-net=0.0.0.0:5180 --unstable-kv --allow-read --allow-write=./dev.sqlite dev.ts"
-    },
-    "imports": {
-        "@simplewebauthn/server": "npm:@simplewebauthn/server@^9.0.3"
-    },
-    "version": "0.0.1",
-    "exports": "./mod.ts"
+  "name": "@socketauthn/server-core",
+  "version": "0.1.0",
+  "tasks": {
+    "dev": "deno run --watch --allow-net=0.0.0.0:5180 --allow-read --unstable-kv dev_server.ts" //Unstable-kv is needed for dev only
+  },
+  "imports": {
+    "@simplewebauthn/server": "npm:@simplewebauthn/server@^9.0.3"
+  },
+  "exports":{
+    ".": "./mod.ts",
+    "./login": "./login.ts",
+    "./register": "./register.ts"
+  },
+  "exclude": ["./dev_server.ts"]
 }

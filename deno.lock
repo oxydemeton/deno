@@ -2,36 +2,9 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "npm:@deno/kv": "npm:@deno/kv@0.7.0",
-      "npm:@simplewebauthn/server": "npm:@simplewebauthn/server@9.0.3",
       "npm:@simplewebauthn/server@^9.0.3": "npm:@simplewebauthn/server@9.0.3"
     },
     "npm": {
-      "@deno/kv-darwin-arm64@0.7.0": {
-        "integrity": "sha512-PaTriht31Rb08TwWdAkmODrLNnGnl9l8nlF/0aae/v7dzJ5FeaoX+0RgxTD+m90quG3ynsdLsY8iCa+st+MkiA==",
-        "dependencies": {}
-      },
-      "@deno/kv-darwin-x64@0.7.0": {
-        "integrity": "sha512-Yw4Gmn6opUJ6ZVuztNaGS4yt11KyJI/juTAyzNiY5H3VhHD7xVm+peG4SGkr6Hq/vXVGcQM3Lldw5b3aJJQYSg==",
-        "dependencies": {}
-      },
-      "@deno/kv-linux-x64-gnu@0.7.0": {
-        "integrity": "sha512-D6xJcx4HSUbgomxGV2lGUgKrRmwHNMmCbu8XRxBjIgpsKrFK1W6w+KitI92wMCgEIOAFAnfeyrYxtMzh2ZdYTw==",
-        "dependencies": {}
-      },
-      "@deno/kv-win32-x64-msvc@0.7.0": {
-        "integrity": "sha512-0UWf6a+T7e/1uOcUgUKTrMupIQSnCI02856ecu9JwutajSvvbSgoi+jpmaUnYW6QqcXjY8ECI/28CQi1DvYYhw==",
-        "dependencies": {}
-      },
-      "@deno/kv@0.7.0": {
-        "integrity": "sha512-+vYCIWDQq+03RKwh85WDBVplwT7gimcLyLezj6C3OuMwaTWfPy9NVmA5y4Mwpoht0+H4CjknEUE7LrfZJAcQ7w==",
-        "dependencies": {
-          "@deno/kv-darwin-arm64": "@deno/kv-darwin-arm64@0.7.0",
-          "@deno/kv-darwin-x64": "@deno/kv-darwin-x64@0.7.0",
-          "@deno/kv-linux-x64-gnu": "@deno/kv-linux-x64-gnu@0.7.0",
-          "@deno/kv-win32-x64-msvc": "@deno/kv-win32-x64-msvc@0.7.0"
-        }
-      },
       "@hexagon/base64@1.1.28": {
         "integrity": "sha512-lhqDEAvWixy3bZ+UOYbPwUbBkwBq5C1LAJ/xPC8Oi+lL54oyakv/npbA0aU2hgCsx/1NUd4IBvV03+aUBWxerw==",
         "dependencies": {}

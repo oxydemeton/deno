@@ -1,26 +1,54 @@
-import { generateAuthenticationOptions, type GenerateRegistrationOptionsOpts } from "@simplewebauthn/server";
-
-const loginDb = await Deno.openKv();
-
-export const loginHandler = {
-  async handleOpen(socket: WebSocket, originalReq: Request, loginConf: GenerateRegistrationOptionsOpts) {
-    const options = await generateAuthenticationOptions(loginConf)
-
-    const timeoutDuration = loginConf.timeout || 60 * 1000
-    loginDb.set([loginConf.userID], {
-      timeout: setTimeout(() => { socket.close(4008, "Login timed out") }, timeoutDuration),
-      challenge: options.challenge
-    }, { expireIn: timeoutDuration + 500 }) // Margin of 500ms so nothing is gone
-
-    socket.send(JSON.stringify(options))
-  },
-  handleMessage(socket: WebSocket, originalReq: Request, event: MessageEvent) {
-    console.log("login msg");
-  },
-  handleClose(socket: WebSocket, originalReq: Request, event: CloseEvent) {
-    console.log("login close");
-  },
-  handleError(socket: WebSocket, originalReq: Request, event: Event) {
-    console.log("login Error");
-  },
+import {
+  generateAuthenticationOptions,
+  GenerateRegistrationOptionsOpts,
+  verifyAuthenticationResponse,
+} from "@simplewebauthn/server";
+import { type Authenticator } from "./register.ts";
+async function onOpen(env: {
+  socketSend: (data: string) => void | Promise<void>;
+  storeLoginChallenge: (
+    id: string,
+    challenge: string,
+    timeout: number,
+  ) => void | Promise<void>;
+}, config: GenerateRegistrationOptionsOpts): Promise<void> {
+  const options = await generateAuthenticationOptions(config);
+  const timeout = options.timeout || 60 * 1000;
+  await env.storeLoginChallenge(options.challenge, config.userID, timeout);
+  env.socketSend(JSON.stringify(options));
 }
+
+async function onMessage(
+  env: {
+    expectedOrigin: string;
+    expectedRPID: string;
+    updateCounter: (newCount: number) => void | Promise<void>;
+  },
+  messageData: string,
+  userID: string,
+  authenticatorForUser: Authenticator,
+  expectedChallenge: string,
+): Promise<void> {
+  let verification;
+  try {
+    verification = await verifyAuthenticationResponse({
+      //@ts-ignore simplewebauthn will check validity and throw if invalid and try will catch
+      response: JSON.stringify(messageData),
+      authenticator: authenticatorForUser,
+      expectedChallenge,
+      expectedOrigin: env.expectedOrigin,
+      expectedRPID: env.expectedRPID,
+    });
+  } catch (error) {
+    throw error; //TODO improve handling
+  }
+  if (verification?.verified) {
+    if (!verification.authenticationInfo) {
+      throw new Error("No registration Info");
+    }
+    await env.updateCounter(verification.authenticationInfo.newCounter);
+  } else {
+    throw new Error("Verification failed");
+  }
+}
+export { onMessage, onOpen };
