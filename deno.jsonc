@@ -1,6 +1,6 @@
 {
   "name": "@socketauthn/server-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "tasks": {
     "dev": "deno run --watch --allow-net=0.0.0.0:5180 --allow-read --unstable-kv dev_server.ts" //Unstable-kv is needed for dev only
   },
@@ -12,5 +12,5 @@
     "./login": "./login.ts",
     "./register": "./register.ts"
   },
-  "exclude": ["./dev_server.ts"]
+  "exclude": ["./dev_server.ts", "./.github/**"]
 }
