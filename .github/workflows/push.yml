@@ -18,6 +18,7 @@ jobs:
         with:
           deno-version: v1.x
       - uses: actions/checkout@v4
+      - run: deno fmt
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Publish
