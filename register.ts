@@ -15,7 +15,7 @@ type Authenticator = Pick<
   | "credentialBackedUp"
 >;
 
-/**Function to be called on onopen with a websocket connection to a "@socketauthn" client
+/** Function to be called on onopen with a websocket connection to a "@socketauthn" client
  * @param env Contains functions to communicate with the websocket and a function to store a challenge associated to the registration
  * @param config Is the config object to generate the registration options, including the userID and userName, both need to be unique
  */
@@ -33,13 +33,13 @@ async function onOpen(env: {
   env.socketSend(JSON.stringify(options));
 }
 
-/**Function to handle the response to {@link onOpen}.
+/** Function to handle the response to {@link onOpen}.
  * @param env Needs a function to create a user in a db with its {@link Authenticator}, id and name. Also needs data about the service
  * @param messageData is the raw data send as the message by the client
  * @param userID is the id of the user to create
  * @param userName is the unique name oif the user
  * @param expectedChallenge is the {@link Authenticator} object stored in the db when calling {@link onOpen}
-*/
+ */
 async function onMessage(
   env: {
     createUser: (

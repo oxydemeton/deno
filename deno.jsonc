@@ -7,7 +7,7 @@
   "imports": {
     "@simplewebauthn/server": "npm:@simplewebauthn/server@^9.0.3"
   },
-  "exports":{
+  "exports": {
     ".": "./mod.ts",
     "./login": "./login.ts",
     "./register": "./register.ts"
